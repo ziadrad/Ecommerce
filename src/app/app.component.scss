@@ -1,0 +1,14 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+app-navbar{
+    padding-top: 0;
+    z-index: 9999;
+}
+
+*{
+    padding-top: 80px;
+}
