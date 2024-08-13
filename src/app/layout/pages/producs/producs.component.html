@@ -5,8 +5,9 @@
     </h1>
 
     <div
-      class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
-    >
+      class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" 
+   
+      >
       <!-- error msg  -->
       @if (errormsg) {
       <div
@@ -16,8 +17,9 @@
         {{ errormsg }}
       </div>
       } @else { @if(isloading){
+        
       <!-- loading shimmer effect -->
-      <div class="card w-72 bg-white shadow-md rounded-xl duration-500">
+      <div   class="card w-64 bg-white shadow-md rounded-xl duration-500">
         <div class="shimmerBG media"></div>
         <div class="p-32">
           <div class="shimmerBG title-line"></div>
@@ -30,7 +32,7 @@
           <div class="shimmerBG content-line end"></div>
         </div>
       </div>
-      <div class="card w-72 bg-white shadow-md rounded-xl duration-500">
+      <div class="card w-64 bg-white shadow-md rounded-xl duration-500">
         <div class="shimmerBG media"></div>
         <div class="p-32">
           <div class="shimmerBG title-line"></div>
@@ -43,7 +45,7 @@
           <div class="shimmerBG content-line end"></div>
         </div>
       </div>
-      <div class="card w-72 bg-white shadow-md rounded-xl duration-500">
+      <div class="card w-64 bg-white shadow-md rounded-xl duration-500">
         <div class="shimmerBG media"></div>
         <div class="p-32">
           <div class="shimmerBG title-line"></div>

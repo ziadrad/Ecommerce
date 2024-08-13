@@ -1,3 +1,10 @@
 body{
     background-color: white;
 }
+::view-transition-old(root) {
+    animation:  ease 1s 1 normal forwards;
+  }
+  
+  ::view-transition-new(root) {
+    animation:  ease 1s 1 normal forwards;
+  }

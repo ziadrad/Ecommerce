@@ -15,6 +15,8 @@ import {
 } from 'ngx-pagination';
 import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-producs',
@@ -22,6 +24,29 @@ import { Router } from '@angular/router';
   imports: [NgxPaginationModule, NgForOf],
   templateUrl: './producs.component.html',
   styleUrl: './producs.component.scss',
+  animations: [
+    trigger(
+      'inOutAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('1s ease-out', 
+                    style({ height: 300, opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ height: 300, opacity: 1 }),
+            animate('1s ease-in', 
+                    style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class ProducsComponent implements OnInit {
   product_List!: Product[];
@@ -84,4 +109,5 @@ export class ProducsComponent implements OnInit {
   product_details_navigate(id:any){
     this._router.navigate(['/product_details',{id:id}])
   }
+  
 }

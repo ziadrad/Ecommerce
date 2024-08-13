@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { log } from 'console';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { Product } from '../../../shared/interfaces/products_interface';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -19,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private _ActivatedRoute: ActivatedRoute,
     private _router: Router,
+    @Inject(PLATFORM_ID) private platform_id:object,
     public _ProductsService: ProductsService
   )
   {
@@ -31,7 +33,9 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
   
     this.productDetaisFetch(this.id);
+    
   }
+
 
   productDetaisFetch(id: string|null) {
     this._ProductsService.getProduct_details(id).subscribe({
