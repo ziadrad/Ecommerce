@@ -2,6 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { isPlatformBrowser } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 
 @Component({
@@ -9,7 +10,14 @@ import { isPlatformBrowser } from '@angular/common';
   standalone: true,
   imports: [RouterLink,RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
+  animations: [
+    trigger('openclose',[
+     transition(':enter',[style({opacity:0}),animate('0.25s ease-in',style({ opacity:1}))]),
+     
+     transition(':leave',[style({opacity:1}),animate('0.25s ease-in',style({opacity:0}))]),
+    ]),
+   ]
 })
 export class NavbarComponent {
 constructor(public _AuthService:AuthService,@Inject(PLATFORM_ID) private id:object,private _Router:Router){
@@ -18,7 +26,6 @@ constructor(public _AuthService:AuthService,@Inject(PLATFORM_ID) private id:obje
 clicked:boolean = false;
 // this function toggle the navbar menu
 toggle_menue():void{
-  console.log(this.clicked)
   if (this.clicked == false) {
     this.clicked=true;
   }else{
@@ -36,5 +43,8 @@ if (isPlatformBrowser(this.id)) {
 this._Router.navigate(['login'])
 }
 
+choosed(){
+  this.clicked = false;
+}
 
 }

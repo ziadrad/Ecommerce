@@ -53,4 +53,7 @@ export class ProductDetailsComponent implements OnInit {
       },
     });
   }
+  go_Products(){
+    this._router.navigate(['/products'])
+  }
 }

@@ -1,1 +1,13 @@
-
+:root {
+    --main-color: #08ac0a;
+    --hover_main-color: #085209;
+    font-family: "Encode Sans Expanded", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  .bg_main {
+    background-color: var(--main-color);
+  }
+  .hover_color {
+    background-color: var(--hover_main-color);
+  }
