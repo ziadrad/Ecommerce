@@ -4,6 +4,7 @@ import { log } from 'console';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { Product } from '../../../shared/interfaces/products_interface';
 import { isPlatformBrowser } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-product-details',
@@ -11,6 +12,13 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
+  animations: [
+    trigger('openclose',[
+     transition(':enter',[style({opacity:0}),animate('1s ease-in',style({ opacity:1}))]),
+     
+     transition(':leave',[style({opacity:1}),animate('1s ease-in',style({opacity:0}))]),
+    ]),
+   ]
 })
 export class ProductDetailsComponent implements OnInit {
   poduct!: Product ;

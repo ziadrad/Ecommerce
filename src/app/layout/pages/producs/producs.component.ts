@@ -1,4 +1,4 @@
-import { isPlatformBrowser, NgForOf } from '@angular/common';
+import { CommonModule, isPlatformBrowser, NgForOf } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { error } from 'console';
@@ -17,38 +17,24 @@ import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Transform } from 'stream';
 
 @Component({
   selector: 'app-producs',
   standalone: true,
-  imports: [NgxPaginationModule, NgForOf],
+  imports: [NgxPaginationModule, NgForOf,CommonModule],
   templateUrl: './producs.component.html',
   styleUrl: './producs.component.scss',
   animations: [
-    trigger(
-      'inOutAnimation', 
-      [
-        transition(
-          ':enter', 
-          [
-            style({ height: 0, opacity: 0 }),
-            animate('1s ease-out', 
-                    style({ height: 300, opacity: 1 }))
-          ]
-        ),
-        transition(
-          ':leave', 
-          [
-            style({ height: 300, opacity: 1 }),
-            animate('1s ease-in', 
-                    style({ height: 0, opacity: 0 }))
-          ]
-        )
-      ]
-    )
+   trigger('openclose',[
+    transition(':enter',[style({opacity:0}),animate('1s ease-in',style({ opacity:1}))]),
+    
+    transition(':leave',[style({opacity:1}),animate('1s ease-out',style({opacity:0}))]),
+   ]),
   ]
 })
 export class ProducsComponent implements OnInit {
+  products_state :'open' | 'closed' = 'open';
   product_List!: Product[];
   errormsg: string = '';
   isloading: boolean = true;
@@ -65,12 +51,17 @@ export class ProducsComponent implements OnInit {
   ) {
     if (isPlatformBrowser(id)) {
       localStorage.setItem('current_page', '/products');
-    }
+      this.product_List = JSON.parse(sessionStorage.getItem('products') || '{}')
+      this.metadata = JSON.parse(sessionStorage.getItem('meta_data') || '{}')    }
+    
   }
   ngOnInit(): void {
-    if (this.product_List == null) {
+    if (sessionStorage.getItem('products') == null) {
       this.productFetch(1);
+    }else{
+      this.isloading =false;
     }
+    console.log(sessionStorage.getItem('products'))
   }
 
   pageChangeEvent(event: number) {
@@ -96,6 +87,11 @@ export class ProducsComponent implements OnInit {
         this.isloading = false;
         this.product_List = res.data;
         this.metadata = res.metadata;
+        if (isPlatformBrowser(this.id)) {
+
+          sessionStorage.setItem("products",JSON.stringify(this.product_List))
+          sessionStorage.setItem("meta_data",JSON.stringify(this.metadata))
+        }
       },
       error: (error) => {
         //this function is error handling
@@ -109,5 +105,8 @@ export class ProducsComponent implements OnInit {
   product_details_navigate(id:any){
     this._router.navigate(['/product_details',{id:id}])
   }
-  
+  show:Boolean = true;
+  sdadsdas(){
+   this.show = false;
+  }
 }
