@@ -13,11 +13,12 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { SearchComponent } from '../../additions/search/search.component';
 
 @Component({
   selector: 'app-producs',
   standalone: true,
-  imports: [NgxPaginationModule, NgForOf, CommonModule],
+  imports: [NgxPaginationModule, NgForOf, CommonModule,SearchComponent],
   templateUrl: './producs.component.html',
   styleUrl: './producs.component.scss',
   animations: [
@@ -36,15 +37,11 @@ import {
 })
 export class ProducsComponent implements OnInit {
   products_state: 'open' | 'closed' = 'open';
-  product_List!: Product[];
+list!:Product[];
+
   errormsg: string = '';
   isloading: boolean = true;
-  metadata: Metadata = {
-    currentPage: 1,
-    limit: 0,
-    numberOfPages: 0,
-    prevPage: 0,
-  };
+
 
   constructor(
     @Inject(PLATFORM_ID) private id: object,
@@ -53,10 +50,13 @@ export class ProducsComponent implements OnInit {
   ) {
     if (isPlatformBrowser(id)) {
       localStorage.setItem('current_page', '/products');
-      this.product_List = JSON.parse(
+      this._ProductsService.product_List = JSON.parse(
         sessionStorage.getItem('products') || '{}'
       );
-      this.metadata = JSON.parse(sessionStorage.getItem('meta_data') || '{}');
+      this._ProductsService.product_list_copy = JSON.parse(
+        sessionStorage.getItem('products') || '{}'
+      );
+      this._ProductsService.metadata = JSON.parse(sessionStorage.getItem('meta_data') || '{}');
     }
   }
   ngOnInit(): void {
@@ -83,18 +83,18 @@ export class ProducsComponent implements OnInit {
 
   //this function is used to fetch product from api
   productFetch(p: number) {
-    this.product_List = [];
     this.isloading = true;
     this._ProductsService.getProducts(p).subscribe({
       next: (res) => {
         console.log(res);
-        this.isloading = false;
-        this.product_List = res.data;
-        this.metadata = res.metadata;
+        this.isloading = false
+        this._ProductsService.product_List = res.data;
+        this._ProductsService.product_list_copy = res.data;
+        this._ProductsService.metadata = res.metadata;
         if (isPlatformBrowser(this.id)) {
           // this to save products  in session storage
-          sessionStorage.setItem('products', JSON.stringify(this.product_List));
-          sessionStorage.setItem('meta_data', JSON.stringify(this.metadata));
+          sessionStorage.setItem('products', JSON.stringify(this._ProductsService.product_List));
+          sessionStorage.setItem('meta_data', JSON.stringify(this._ProductsService.metadata));
         }
       },
       error: (error) => {
@@ -109,8 +109,5 @@ export class ProducsComponent implements OnInit {
   product_details_navigate(id: any) {
     this._router.navigate(['/product_details', { id: id }]);
   }
-  show: Boolean = true;
-  sdadsdas() {
-    this.show = false;
-  }
+ 
 }

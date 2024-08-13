@@ -2,14 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/Environment';
 import { Observable } from 'rxjs';
-import { Metadata } from '../../interfaces/products_interface';
+import { Metadata, Product } from '../../interfaces/products_interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-
+  product_List!: Product[];
+  product_list_copy!:Product[];
+  metadata: Metadata = {
+    currentPage: 1,
+    limit: 0,
+    numberOfPages: 0,
+    prevPage: 0,
+  };
 
   constructor(private _httpClient: HttpClient) { 
 
