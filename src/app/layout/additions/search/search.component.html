@@ -5,7 +5,7 @@
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
            <i class="fa fa-search text-green-600"></i>
         </div>
-        <input type="search" (keydown.backspace)="onremove($event)"  (keyup)="search_products($event)" id="default-search" class="block  p-4 w-[50vw] md:w-[40vw] lg:w-[20vw] ps-10 text-sm text-gray-900 border duration-500 focus:w-[60vw] md:focus:w-[60vw]  lg:focus:w-[40vw] rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-white shadow hover: dark:placeholder-gray-400 dark:text-black dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Search " required />
+        <input type="search"(keydown.delete)="onremove($event)" (keydown.backspace)="onremove($event)"  (keyup)="search_products($event)" id="default-search" class="block  p-4 w-[50vw] md:w-[40vw] lg:w-[20vw] ps-10 text-sm text-gray-900 border duration-500 focus:w-[60vw] md:focus:w-[60vw]  lg:focus:w-[40vw] rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-white shadow hover: dark:placeholder-gray-400 dark:text-black dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="Search " required />
         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Search</button>
     </div>
 </form>
