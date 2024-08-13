@@ -29,7 +29,7 @@ export class RegisterComponent {
       name: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(8),
+        Validators.maxLength(30),
       ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [

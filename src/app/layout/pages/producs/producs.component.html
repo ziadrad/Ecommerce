@@ -1,29 +1,30 @@
 <div class="flex flex-1 justify-center items-center">
   <div class="container flex flex-1 flex-col justify-center items-center">
-
-      <h1 @openclose  class="tittle font-sans font-semibold text-center w-fit py-5">
-        PRODUCTS
-      </h1>
-  
-    
+    <h1
+      @openclose
+      class="tittle font-sans font-semibold text-center w-fit py-5"
+    >
+      PRODUCTS
+    </h1>
 
     <div
-    
-      class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" 
-   
-      >
+      class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
+    >
       <!-- error msg  -->
       @if (errormsg) {
-      <div 
+      <div
         class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-500"
         role="alert"
       >
         {{ errormsg }}
       </div>
       } @else { @if(isloading){
-        
+
       <!-- loading shimmer effect -->
-      <div @openclose class="card w-72 bg-white shadow-md rounded-xl duration-500">
+      <div
+        @openclose
+        class="card w-72 bg-white shadow-md rounded-xl duration-500"
+      >
         <div class="shimmerBG media"></div>
         <div class="p-32">
           <div class="shimmerBG title-line"></div>
@@ -36,7 +37,10 @@
           <div class="shimmerBG content-line end"></div>
         </div>
       </div>
-      <div @openclose class="card w-72 bg-white shadow-md rounded-xl duration-500">
+      <div
+        @openclose
+        class="card w-72 bg-white shadow-md rounded-xl duration-500"
+      >
         <div class="shimmerBG media"></div>
         <div class="p-32">
           <div class="shimmerBG title-line"></div>
@@ -49,7 +53,10 @@
           <div class="shimmerBG content-line end"></div>
         </div>
       </div>
-      <div @openclose class="card w-72 bg-white shadow-md rounded-xl duration-500">
+      <div
+        @openclose
+        class="card w-72 bg-white shadow-md rounded-xl duration-500"
+      >
         <div class="shimmerBG media"></div>
         <div class="p-32">
           <div class="shimmerBG title-line"></div>
@@ -64,9 +71,11 @@
       </div>
       } @else {
       <!-- Products cards -->
-      @for  (product of product_List; track $index ;) {
+      @for (product of product_List; track $index ;) {
 
-      <div @openclose (click)="product_details_navigate(product.id)"
+      <div
+        @openclose
+        (click)="product_details_navigate(product.id)"
         class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl hover:cursor-pointer"
       >
         <a>
@@ -134,8 +143,8 @@
       </div>
       } } }
     </div>
-    
-  <!--  pagination div -->
+
+    <!--  pagination div -->
     <div class="flex flex-col items-center">
       <!-- Help text -->
       <span class="text-sm text-gray-700 dark:text-gray-400">

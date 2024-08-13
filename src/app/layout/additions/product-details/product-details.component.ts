@@ -20,6 +20,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
    ]
 })
+
 export class ProductDetailsComponent implements OnInit {
   poduct!: Product ;
   isloading: boolean = true;
@@ -29,23 +30,17 @@ export class ProductDetailsComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _router: Router,
     @Inject(PLATFORM_ID) private platform_id:object,
-    public _ProductsService: ProductsService
-  )
-  {
-    
-   
-  }
+    public _ProductsService: ProductsService){}
 
   id: string | null = this._ActivatedRoute.snapshot.paramMap.get('id');
-
   ngOnInit(): void {
-  
-    this.productDetaisFetch(this.id);
-    
+    this.productDetailsFetch(this.id);
+
   }
 
 
-  productDetaisFetch(id: string|null) {
+  //function to fetch products details;
+  productDetailsFetch(id: string|null) {
     this._ProductsService.getProduct_details(id).subscribe({
       next: (res) => {
         console.log(res);
