@@ -5,11 +5,12 @@ import { ProductsService } from '../../../shared/services/products/products.serv
 import { Product } from '../../../shared/interfaces/products_interface';
 import { isPlatformBrowser } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [],
+  imports: [CarouselModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
   animations: [
@@ -56,4 +57,29 @@ export class ProductDetailsComponent implements OnInit {
   go_Products(){
     this._router.navigate(['/products'])
   }
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: false,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
+
 }

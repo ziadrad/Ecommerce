@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './layout/pages/home/home.component';
-import { ProducsComponent } from './layout/pages/producs/producs.component';
+import { ProducsComponent } from './layout/pages/products/products.component';
 import { CartComponent } from './layout/pages/cart/cart.component';
 import { CategoriesComponent } from './layout/pages/categories/categories.component';
 import { BrandComponent } from './layout/pages/brand/brand.component';

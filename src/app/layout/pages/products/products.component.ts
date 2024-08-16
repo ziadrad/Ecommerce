@@ -16,21 +16,21 @@ import {
 import { SearchComponent } from '../../additions/search/search.component';
 
 @Component({
-  selector: 'app-producs',
+  selector: 'app-products',
   standalone: true,
   imports: [NgxPaginationModule, NgForOf, CommonModule,SearchComponent],
-  templateUrl: './producs.component.html',
-  styleUrl: './producs.component.scss',
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.scss',
   animations: [
     trigger('openclose', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('1s ease-in', style({ opacity: 1 })),
+        animate('0.25s ease-in', style({ opacity: 1 })),
       ]),
 
       transition(':leave', [
         style({ opacity: 1 }),
-        animate('1s ease-out', style({ opacity: 0 })),
+        animate('0.25s ease-out', style({ opacity: 0 })),
       ]),
     ]),
   ],
@@ -50,22 +50,11 @@ list!:Product[];
   ) {
     if (isPlatformBrowser(id)) {
       localStorage.setItem('current_page', '/products');
-      this._ProductsService.product_List = JSON.parse(
-        sessionStorage.getItem('products') || '{}'
-      );
-      this._ProductsService.product_list_copy = JSON.parse(
-        sessionStorage.getItem('products') || '{}'
-      );
-      this._ProductsService.metadata = JSON.parse(sessionStorage.getItem('meta_data') || '{}');
     }
   }
   ngOnInit(): void {
     // this to check if products is in session storage
-    if (sessionStorage.getItem('products') == null) {
       this.productFetch(1);
-    } else {
-      this.isloading = false;
-    }
   }
 
   pageChangeEvent(event: number) {
@@ -91,11 +80,6 @@ list!:Product[];
         this._ProductsService.product_List = res.data;
         this._ProductsService.product_list_copy = res.data;
         this._ProductsService.metadata = res.metadata;
-        if (isPlatformBrowser(this.id)) {
-          // this to save products  in session storage
-          sessionStorage.setItem('products', JSON.stringify(this._ProductsService.product_List));
-          sessionStorage.setItem('meta_data', JSON.stringify(this._ProductsService.metadata));
-        }
       },
       error: (error) => {
         //this function is error handling
