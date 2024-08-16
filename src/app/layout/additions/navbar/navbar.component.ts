@@ -8,7 +8,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive,NgOptimizedImage],
+  imports: [RouterLink,RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   animations: [
