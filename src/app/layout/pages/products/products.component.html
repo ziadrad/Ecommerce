@@ -1,15 +1,20 @@
 <div class="flex flex-1 justify-center items-center flex-col">
-  <app-search></app-search>
+  @if (current_page === '/products' ) {
+    <app-search></app-search>
+  }
+ 
 
   <div class="container flex flex-1 flex-col justify-center items-center">
-
-
+    @if (current_page === '/products' ) {
+      
     <h1
-      @openclose
-      class="tittle font-sans font-semibold text-center w-fit py-5"
-    >
-      PRODUCTS
-    </h1>
+    @openclose
+    class="tittle font-sans font-semibold text-center w-fit py-5"
+  >
+    PRODUCTS
+  </h1>
+    }
+
 
     <div @openclose
       class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 items-center justify-center gap-y-7 gap-x-7 mt-10 mb-5"
@@ -145,39 +150,41 @@
       </div>
       } } }
     </div>
-
-    <!--  pagination div -->
-    <div class="flex flex-col items-center pb-5">
-      <!-- Help text -->
-      <span class="text-sm text-gray-700 dark:text-gray-400">
-        Showing
-        <span class="font-semibold text-gray-900 dark:text-black">{{
-          _ProductsService.metadata.currentPage
-        }}</span>
-        to
-        <span class="font-semibold text-gray-900 dark:text-black">{{
-          _ProductsService.metadata.numberOfPages
-        }}</span>
-      </span>
-      <!-- Buttons -->
-      <div class="inline-flex mt-2 xs:mt-0">
-        @if (_ProductsService.metadata.currentPage !=1) {
-
-        <button
-          (click)="pageChangeEvent(_ProductsService.metadata.prevPage)"
-          class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-green-600 rounded-s hover:bg-green-900 dark:bg-green-600 dark:border-gray-700 dark:text-white dark:hover:bg-green-700 dark:hover:text-white"
-        >
-          Prev
-        </button>
-        } @if (_ProductsService.metadata.numberOfPages !=_ProductsService.metadata.currentPage) {
-        <button
-          (click)="pageChangeEvent(_ProductsService.metadata.currentPage + 1)"
-          class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-green-600 border-0 border-s border-gray-700 rounded-e hover:bg-green-900 dark:bg-green-600 dark:border-green-700 dark:text-white dark:hover:bg-green-700 dark:hover:text-white"
-        >
-          Next
-        </button>
-        }
+    @if (current_page === '/products' ) {
+      <div class="flex flex-col items-center pb-5">
+        <!-- Help text -->
+        <span class="text-sm text-gray-700 dark:text-gray-400">
+          Showing
+          <span class="font-semibold text-gray-900 dark:text-black">{{
+            _ProductsService.metadata.currentPage
+          }}</span>
+          to
+          <span class="font-semibold text-gray-900 dark:text-black">{{
+            _ProductsService.metadata.numberOfPages
+          }}</span>
+        </span>
+        <!-- Buttons -->
+        <div class="inline-flex mt-2 xs:mt-0">
+          @if (_ProductsService.metadata.currentPage !=1) {
+  
+          <button
+            (click)="pageChangeEvent(_ProductsService.metadata.prevPage)"
+            class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-green-600 rounded-s hover:bg-green-900 dark:bg-green-600 dark:border-gray-700 dark:text-white dark:hover:bg-green-700 dark:hover:text-white"
+          >
+            Prev
+          </button>
+          } @if (_ProductsService.metadata.numberOfPages !=_ProductsService.metadata.currentPage) {
+          <button
+            (click)="pageChangeEvent(_ProductsService.metadata.currentPage + 1)"
+            class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-green-600 border-0 border-s border-gray-700 rounded-e hover:bg-green-900 dark:bg-green-600 dark:border-green-700 dark:text-white dark:hover:bg-green-700 dark:hover:text-white"
+          >
+            Next
+          </button>
+          }
+        </div>
       </div>
-    </div>
+    }
+    <!--  pagination div -->
+
   </div>
 </div>

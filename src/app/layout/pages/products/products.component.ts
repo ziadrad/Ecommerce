@@ -41,7 +41,7 @@ list!:Product[];
 
   errormsg: string = '';
   isloading: boolean = true;
-
+current_page!:string|null;
 
   constructor(
     @Inject(PLATFORM_ID) private id: object,
@@ -49,12 +49,14 @@ list!:Product[];
     private _router: Router
   ) {
     if (isPlatformBrowser(id)) {
+      this.current_page = localStorage.getItem("current_page")
       localStorage.setItem('current_page', '/products');
     }
   }
   ngOnInit(): void {
     // this to check if products is in session storage
       this.productFetch(1);
+      
   }
 
   pageChangeEvent(event: number) {

@@ -1,10 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
 import { afterNextRender, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { ProducsComponent } from "../products/products.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [ProducsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/Environment';
 import { Observable } from 'rxjs';
-import { Metadata, Product } from '../../interfaces/products_interface';
+import { Metadata, Product, product_List } from '../../interfaces/products_interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,8 @@ export class ProductsService {
    
   }
 
-  getProducts(page: number):Observable<any>{
-    return this._httpClient.get(Environment.baseUrl+'/api/v1/products?page=' + page);
+  getProducts(page: number):Observable<product_List>{
+    return this._httpClient.get<product_List>(Environment.baseUrl+'/api/v1/products?page=' + page);
   }
 
   getProduct_details(id: string|null):Observable<any>{
