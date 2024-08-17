@@ -79,7 +79,7 @@
       @for (product of _ProductsService.product_List; track $index ;) {
 
       <div
-         [@openclose]        (click)="product_details_navigate(product.id)"
+         [@openclose]  (click)="product_details_navigate(product.id)"
         class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl hover:cursor-pointer"
       >
         <a [@openclose]>
@@ -89,11 +89,11 @@
             class="h-80 w-72 object-cover rounded-t-xl"
           />
           <div class="px-4 py-3 w-72">
-            <span class="text-gray-400 mr-3 uppercase text-xs">{{
+            <span class="text-green-600 mr-3 uppercase text-xs">{{
               product.brand.name
             }}</span>
             <p class="text-lg font-bold text-black truncate block capitalize">
-              {{ product.title }}
+              {{ product.title.split(" ").splice(0,2).join(" ") }}
             </p>
             <div class="flex items-center justify-between">
               <p class="text-lg font-semibold text-black cursor-auto my-3">
@@ -121,7 +121,7 @@
                 >
               </div>
 
-              <div class="">
+              <div class=" hover:text-[#08ac0a] duration-400 transition-colors">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -164,7 +164,7 @@
         @if (_ProductsService.metadata.currentPage !=1) {
 
         <button
-          (click)="pageChangeEvent(_ProductsService.metadata.currentPage - 1)"
+          (click)="pageChangeEvent(_ProductsService.metadata.prevPage)"
           class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-green-600 rounded-s hover:bg-green-900 dark:bg-green-600 dark:border-gray-700 dark:text-white dark:hover:bg-green-700 dark:hover:text-white"
         >
           Prev
