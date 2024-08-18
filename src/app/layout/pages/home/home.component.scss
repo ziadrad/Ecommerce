@@ -8,3 +8,6 @@ body{
   ::view-transition-new(root) {
     animation:  ease 1s 1 normal forwards;
   }
+  ng-template img{
+object-fit: fill;
+  }

@@ -1,157 +1,21 @@
 <div class="flex flex-1 justify-center items-center flex-col">
-  @if (current_page === '/products' ) {
     <app-search></app-search>
-  }
+  
  
 
   <div class="container flex flex-1 flex-col justify-center items-center">
-    @if (current_page === '/products' ) {
-      
+        
     <h1
     @openclose
     class="tittle font-sans font-semibold text-center w-fit py-5"
   >
     PRODUCTS
   </h1>
-    }
+    
 
 
-    <div @openclose
-      class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 items-center justify-center gap-y-7 gap-x-7 mt-10 mb-5"
-    >
-      <!-- error msg  -->
-      @if (errormsg) {
-      <div
-        class="p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-500"
-        role="alert"
-      >
-        not found
-      </div>
-      } @else { 
-        @if(isloading){
-
-      <!-- loading shimmer effect -->
-      <div
-       
-        class="card w-72 bg-white shadow-md rounded-xl duration-500"
-      >
-        <div class="shimmerBG media"></div>
-        <div class="p-32">
-          <div class="shimmerBG title-line"></div>
-          <div class="shimmerBG title-line end"></div>
-
-          <div class="shimmerBG content-line m-t-24"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line end"></div>
-        </div>
-      </div>
-      <div
-        
-        class="card w-72 bg-white shadow-md rounded-xl duration-500"
-      >
-        <div class="shimmerBG media"></div>
-        <div class="p-32">
-          <div class="shimmerBG title-line"></div>
-          <div class="shimmerBG title-line end"></div>
-
-          <div class="shimmerBG content-line m-t-24"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line end"></div>
-        </div>
-      </div>
-      <div
-        
-        class="card w-72 bg-white shadow-md rounded-xl duration-500"
-      >
-        <div  class="shimmerBG media"></div>
-        <div  class="p-32">
-          <div class="shimmerBG title-line"></div>
-          <div class="shimmerBG title-line end"></div>
-
-          <div class="shimmerBG content-line m-t-24"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line"></div>
-          <div class="shimmerBG content-line end"></div>
-        </div>
-      </div>
-      } @else {
-      <!-- Products cards -->
-      @for (product of _ProductsService.product_List; track $index ;) {
-
-      <div
-         [@openclose]  (click)="product_details_navigate(product.id)"
-        class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl hover:cursor-pointer"
-      >
-        <a [@openclose]>
-          <img
-            [src]="product.imageCover"
-            alt="Product"
-            class="h-80 w-72 object-cover rounded-t-xl"
-          />
-          <div class="px-4 py-3 w-72">
-            <span class="text-green-600 mr-3 uppercase text-xs">{{
-              product.brand.name
-            }}</span>
-            <p class="text-lg font-bold text-black truncate block capitalize">
-              {{ product.title.split(" ").splice(0,2).join(" ") }}
-            </p>
-            <div class="flex items-center justify-between">
-              <p class="text-lg font-semibold text-black cursor-auto my-3">
-                {{ product.price }} EGP
-              </p>
-
-              <div class="flex items-center">
-                <svg
-                  class="w-4 h-4 text-yellow-300 me-1"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 20"
-                >
-                  <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                  />
-                </svg>
-                <p class="ms-2 text-sm font-bold text-gray-900">
-                  {{ product.ratingsAverage }}
-                </p>
-              
-                <a class="text-sm font-medium ms-2 text-gray-900"
-                  >{{ product.ratingsQuantity }} reviews</a
-                >
-              </div>
-
-              <div class=" hover:text-[#08ac0a] duration-400 transition-colors">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-bag-plus"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                  />
-                  <path
-                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      } } }
-    </div>
-    @if (current_page === '/products' ) {
-      <div class="flex flex-col items-center pb-5">
+   <app-product-row></app-product-row>
+        <div class="flex flex-col items-center pb-5">
         <!-- Help text -->
         <span class="text-sm text-gray-700 dark:text-gray-400">
           Showing
@@ -183,7 +47,7 @@
           }
         </div>
       </div>
-    }
+    
     <!--  pagination div -->
 
   </div>

@@ -1,28 +1,17 @@
-import { CommonModule, isPlatformBrowser, NgForOf } from '@angular/common';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Product } from '../../../shared/interfaces/products_interface';
 import { ProductsService } from '../../../shared/services/products/products.service';
-import {
-  Metadata,
-  Product,
-} from '../../../shared/interfaces/products_interface';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { Router } from '@angular/router';
-import {
-  animate,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { SearchComponent } from '../../additions/search/search.component';
-import { ProductRowComponent } from "../../additions/product-row/product-row.component";
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-product-row',
   standalone: true,
-  imports: [NgxPaginationModule, NgForOf, SearchComponent, ProductRowComponent],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.scss',
-  animations: [
+  imports: [],
+  templateUrl: './product-row.component.html',
+  styleUrl: './product-row.component.scss',
+   animations: [
     trigger('openclose', [
       transition(':enter', [
         style({ opacity: 0 }),
@@ -36,7 +25,7 @@ import { ProductRowComponent } from "../../additions/product-row/product-row.com
     ]),
   ],
 })
-export class ProducsComponent implements OnInit {
+export class ProductRowComponent implements OnInit{
   products_state: 'open' | 'closed' = 'open';
 list!:Product[];
 

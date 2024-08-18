@@ -6,6 +6,7 @@ import { Product } from '../../../shared/interfaces/products_interface';
 import { isPlatformBrowser } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-product-details',
@@ -23,6 +24,25 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 })
 
 export class ProductDetailsComponent implements OnInit {
+  customOptions: OwlOptions = {
+ 
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    autoplay:true,
+    autoplayTimeout:4000,
+    autoplaySpeed:700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+    },
+    nav: false
+  }
   poduct!: Product ;
   isloading: boolean = true;
 
@@ -36,6 +56,7 @@ export class ProductDetailsComponent implements OnInit {
   id: string | null = this._ActivatedRoute.snapshot.paramMap.get('id');
   ngOnInit(): void {
     this.productDetailsFetch(this.id);
+    
 
   }
 
@@ -55,31 +76,17 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   go_Products(){
-    this._router.navigate(['/products'])
-  }
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: false,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 2
-      },
-      740: {
-        items: 3
-      },
-      940: {
-        items: 4
+    if (isPlatformBrowser(this.platform_id)) {
+     let current_page = localStorage.getItem('current_page')
+      if (current_page === '/home') {
+        this._router.navigate(['/home'])
+
+      }else{
+      this._router.navigate(['/products'])
       }
-    },
-    nav: true
+
+    }
   }
+  
 
 }

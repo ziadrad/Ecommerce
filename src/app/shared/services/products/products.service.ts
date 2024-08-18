@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Environment } from '../../../base/Environment';
 import { Observable } from 'rxjs';
-import { Metadata, Product, product_List } from '../../interfaces/products_interface';
+import { Category, Metadata, Product, product_List } from '../../interfaces/products_interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,10 @@ export class ProductsService {
 
   getProduct_details(id: string|null):Observable<any>{
     return this._httpClient.get(Environment.baseUrl+'/api/v1/products/' + id);
+  }
+
+  getCategories():Observable<any>{
+    return this._httpClient.get<any>(Environment.baseUrl+'/api/v1/categories');
   }
   
 }

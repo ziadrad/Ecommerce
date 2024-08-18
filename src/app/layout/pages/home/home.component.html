@@ -1,1 +1,19 @@
-<app-products class="py-4"></app-products>
+<div class="w-10/12 mx-auto">
+    <div  class=" main_imgs w-full rounded-2xl flex flex-wrap "> 
+        <div class="w-full md:w-2/3">
+        <owl-carousel-o [options]="customOptions" class="w-full md:w-2/3 rounded-2xl" >
+            <ng-template carouselSlide> <img src="assets/images/slider-image-3.jpeg"  class="w-full  " alt=""></ng-template>  
+            <ng-template carouselSlide> <img src="assets/images/slider-image-1.jpeg" class="w-full " alt=""></ng-template>  
+            <ng-template carouselSlide> <img src="assets/images/slider-image-3.jpeg" class="w-fullr" alt=""></ng-template> 
+      </owl-carousel-o>
+    </div>
+      <div class="flex md:flex-col md:w-1/3 w-1/2 side_img">
+        <img src="assets/images/slider-image-1.jpeg" class="w-full" alt="">
+        <img src="assets/images/slider-image-1.jpeg"class="w-full" alt="">
+      </div>
+        </div>
+</div>
+
+<app-category-slider></app-category-slider>
+
+<app-product-row class="py-4"></app-product-row>
