@@ -14,13 +14,14 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { isPlatformBrowser, NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { routes } from '../../../app.routes';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass,RouterLink,RouterLinkActive],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -63,4 +64,5 @@ export class LoginComponent {
       },
     });
   }
+
 }

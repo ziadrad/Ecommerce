@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, input, OnInit, PLATFORM_ID } from '@angular/core';
 import { Product } from '../../../shared/interfaces/products_interface';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { Router } from '@angular/router';
@@ -30,7 +30,7 @@ export class ProductRowComponent implements OnInit{
 list!:Product[];
 
   errormsg: string = '';
-  isloading: boolean = true;
+ @Input() isloading: boolean = true;
 current_page!:string|null;
 
   constructor(
@@ -46,19 +46,6 @@ current_page!:string|null;
     // this to check if products is in session storage
       this.productFetch(1);
       
-  }
-
-  pageChangeEvent(event: number) {
-    if (isPlatformBrowser(this.id)) {
-      //this function to scroll to top when pagination activated
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
-    }
-
-    this.productFetch(event);
   }
 
   //this function is used to fetch product from api

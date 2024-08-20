@@ -20,8 +20,11 @@
 .bg_main {
   background-color: var(--main-color);
 }
-.hover_color {
+.hover_bgcolor:hover {
   background-color: var(--hover_main-color);
+}
+.hover_color:hover{
+  color: var(--hover_main-color);
 }
 .loader {
   width: 15px;

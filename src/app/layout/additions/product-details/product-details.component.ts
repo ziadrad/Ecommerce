@@ -75,6 +75,8 @@ export class ProductDetailsComponent implements OnInit {
       },
     });
   }
+
+  
   go_Products(){
     if (isPlatformBrowser(this.platform_id)) {
      let current_page = localStorage.getItem('current_page')

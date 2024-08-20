@@ -9,6 +9,7 @@ import { LoginComponent } from './layout/pages/login/login.component';
 import { RegisterComponent } from './layout/pages/register/register.component';
 import { authGuard } from './shared/guard/auth.guard';
 import { ProductDetailsComponent } from './layout/additions/product-details/product-details.component';
+import { ForgetPasswordMainComponent } from './layout/additions/forget_password/forget-password-main/forget-password-main.component';
 
 export const routes: Routes = [
     
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path:"categories", component:CategoriesComponent,canActivate:[authGuard]},
     {path:"brand", component:BrandComponent,canActivate:[authGuard]},
     {path:"login", component:LoginComponent},
+    {path:"ForgetPassword", component:ForgetPasswordMainComponent},
     {path:"register", component:RegisterComponent},
     {path:"**", component:NotfoundComponent},
   

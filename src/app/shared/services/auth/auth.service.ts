@@ -4,7 +4,7 @@ import {
   Injectable,
   PLATFORM_ID,
 } from '@angular/core';
-import { login_data, register_data } from '../../interfaces/data';
+import { Email_data, login_data, register_data, resetCode, token } from '../../interfaces/data';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Environment } from '../../../base/Environment';
@@ -49,6 +49,29 @@ export class AuthService {
   signin(data: login_data): Observable<any> {
     return this._HttpClient.post(
       `${Environment.baseUrl}/api/v1/auth/signin`,
+      data
+    );
+  }
+    // this function connect to api and post Email of user to api And call ForgetPassword
+
+  ForgetPassword(data: Email_data): Observable<any> {
+    return this._HttpClient.post(
+      `${Environment.baseUrl}/api/v1/auth/forgotPasswords`,
+      data
+    );
+  }
+    // this function connect to api and post Email of user to api And resetPassword
+  resetPassword(data: login_data): Observable<token> {
+    return this._HttpClient.put<token>(
+      `${Environment.baseUrl}/api/v1/auth/resetPassword`,
+      data
+    );
+  }
+    // this function connect to api and post ResetCode of user to api for being checked
+
+  VerifyResetPassword(data: resetCode): Observable<any> {
+    return this._HttpClient.post(
+      `${Environment.baseUrl}/api/v1/auth/verifyResetCode`,
       data
     );
   }
