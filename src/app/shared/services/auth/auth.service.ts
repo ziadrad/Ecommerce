@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   userData: BehaviorSubject<any> = new BehaviorSubject(null);
-
   constructor(
     private _HttpClient: HttpClient,
     private _Route: Router,

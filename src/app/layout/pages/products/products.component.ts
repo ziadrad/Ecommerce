@@ -15,6 +15,8 @@ import {
 } from '@angular/animations';
 import { SearchComponent } from '../../additions/search/search.component';
 import { ProductRowComponent } from "../../additions/product-row/product-row.component";
+import { CartService } from '../../../shared/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -39,13 +41,15 @@ import { ProductRowComponent } from "../../additions/product-row/product-row.com
 export class ProducsComponent implements OnInit {
   products_state: 'open' | 'closed' = 'open';
 list!:Product[];
-
+UserWord:string = '';
   errormsg: string = '';
   isloading: boolean = true;
 current_page!:string|null;
 
   constructor(
     @Inject(PLATFORM_ID) private id: object,
+   private _CartService:CartService,
+   private toster:ToastrService,
     public _ProductsService: ProductsService,
     private _router: Router
   ) {
@@ -77,10 +81,8 @@ current_page!:string|null;
     this.isloading = true;
     this._ProductsService.getProducts(p).subscribe({
       next: (res) => {
-        console.log(res);
         this.isloading = false
         this._ProductsService.product_List = res.data;
-        this._ProductsService.product_list_copy = res.data;
         this._ProductsService.metadata = res.metadata;
       },
       error: (error) => {
@@ -95,5 +97,9 @@ current_page!:string|null;
   product_details_navigate(id: any) {
     this._router.navigate(['/product_details', { id: id }]);
   }
+  reciveUserWord(event:string){
+this.UserWord = event;
+  }
+ 
  
 }

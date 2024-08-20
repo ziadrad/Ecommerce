@@ -1,8 +1,10 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CartService } from '../../../shared/services/cart/cart.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @Component({
@@ -19,9 +21,24 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ]),
    ]
 })
-export class NavbarComponent {
-constructor(public _AuthService:AuthService,@Inject(PLATFORM_ID) private id:object,private _Router:Router){
+export class NavbarComponent implements OnInit {
+constructor(public _CartService:CartService,public _AuthService:AuthService,@Inject(PLATFORM_ID) private id:object,private _Router:Router){
 
+}
+
+ngOnInit(): void {
+  this._CartService.getCart().subscribe({
+    next:(res)=>{
+      this._CartService.cartListquantity.next(res.numOfCartItems)
+      console.log(this._CartService.cartListquantity.getValue())
+    
+    },
+    error:(error)=>{
+    this._CartService.cartListquantity.next(0)
+    this._Router.navigate(['/home'])
+    }
+    
+    })
 }
 clicked:boolean = false;
 // this function toggle the navbar menu
@@ -46,5 +63,6 @@ this._Router.navigate(['login'])
 choosed(){
   this.clicked = false;
 }
+
 
 }

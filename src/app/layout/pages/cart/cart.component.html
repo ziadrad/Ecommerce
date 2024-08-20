@@ -1,1 +1,108 @@
-<p>cart works!</p>
+
+@if (isloading) {
+  <div 
+    class="justify-center items-center flex flex-col space-y-5 md:flex-row px-16"
+  >
+    <div class="lds-grid">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  
+  }@else {
+<section @openclose class="bg-white py-8 antialiased  md:py-16">
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <h2 class="text-xl font-semibold text-gray-900  sm:text-2xl">Shopping Cart</h2>
+      @if (cartListData) {
+
+        
+          <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+
+            <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl shadow">
+              <div class="space-y-6">
+                @for (product of cartListData.products; track $index) {
+
+                <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm text-gray-900   dark:bg-gray-100 md:p-6">
+                  <div class="space-y-4 items-center flex-1justify-center flex flex-col md:flex-row md:items-center md:justify-between md:gap-6 md:space-y-0">
+                   
+                      <div class="w-6/12  md:h-30 md:w-20 ">
+                      <img class="hidden h-full w-full dark:block" [src]="product.product.imageCover" [alt]="product.product.title" />
+                    </div>
+                    <label for="counter-input" class="sr-only">Choose quantity:</label>
+                    <div class="flex flex-col md:flex-row items-center justify-between md:order-3 md:justify-center">
+                      <div class="flex items-center mb-4 md:mb-0 justify-center ">
+                        <button type="button" id="decrement-button" (click)="ChangeProductQuauntity(product.count = product.count - 1 ,product.product._id)" data-input-counter-decrement="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ">
+                         <i class="fa fa-minus"></i>
+                        </button>
+                       <span class="mx-2">{{product.count}}</span>
+                        <button type="button" id="increment-button" (click)="ChangeProductQuauntity(product.count = product.count + 1 ,product.product._id)" data-input-counter-increment="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-grey-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ">
+                         <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="text-end md:order-4 md:w-32">
+                        <p class="text-base font-bold text-gray-900 ">{{product.price}} EGP</p>
+                      </div>
+                    </div>
+      
+                    <div class="w-full min-w-0 flex-1 flex-col justify-between space-y-4 md:order-2 md:max-w-md">
+                      <p  class="text-base font-medium text-gray-900  ">{{product.product.title}}
+                      <div class="flex self-end items-center gap-4">
+                       
+      
+                        <button type="button" (click)="DeleteProduct(product.product._id)" class="inline-flex items-center text-sm hover:bg-red-600 rounded hover:text-white p-2  text-red-600  dark:text-red-500 font-bold">
+                          <i class="fa fa-trash me-2"></i>
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+              </div>
+            
+            </div>
+      
+            <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+              <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm text-gray-900  dark:bg-gray-100 sm:p-6">
+                <p class="text-xl font-semibold text-gray-900 ">Order summary</p>
+      
+                <div class="space-y-4">
+             
+      
+                  <dl class="flex items-center justify-between gap-4  pt-2 dark:border-gray-700">
+                    <dt class="text-base font-bold text-gray-900 ">Total Price</dt>
+                    <dd class="text-base font-bold text-gray-900 ">{{cartListData.totalCartPrice |currency:'EGP'}}</dd>
+                  </dl>
+                </div>
+      
+                <a class="flex w-full items-center justify-center rounded-lg bg_main hover_bgcolor text-white  px-5 py-2.5 text-sm font-medium  hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Checkout</a>
+
+                <a  (click)="DeletCart()" class=" cursor-pointer flex w-full items-center justify-center rounded-lg bg-red-500 hover_bgcolor text-white  px-5 py-2.5 text-sm font-medium  hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Remove Cart
+                  <i class="fa fa-cart-shopping ms-2"></i>
+                </a>
+      
+                <div class="flex items-center justify-center gap-2">
+                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
+                  <a routerLink="/products" class="inline-flex items-center gap-2 text-sm font-medium text-primary-700  dark:text-primary-500">
+                    <span class="underline hover:no-underline">Continue Shopping</span>
+                    <i class="fa fa-arrow-right no-underline"></i>
+                  </a>
+                </div>
+              </div>
+      
+             
+            </div>
+          </div>
+        }
+      
+ 
+    </div>
+  </section>
+}

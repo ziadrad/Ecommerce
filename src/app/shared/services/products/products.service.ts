@@ -10,7 +10,6 @@ import { Category, Metadata, Product, product_List } from '../../interfaces/prod
 export class ProductsService {
 
   product_List!: Product[];
-  product_list_copy!:Product[];
   metadata: Metadata = {
     currentPage: 1,
     limit: 0,

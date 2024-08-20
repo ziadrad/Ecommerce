@@ -1,4 +1,4 @@
-<nav  class=" fixed nav min-w-full  bg-white">
+<nav class="fixed nav min-w-full bg-white">
   <div class="mx-auto container px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center align-middle justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -72,32 +72,27 @@
               routerLink="home"
               >Home</a
             >
-          
+
             <a
               class="rounded-md px-3 py-2 text-sm font-medium text-black hover:text-green-700"
               routerLinkActive="bg_main text-white  hover:text-white"
-              routerLink="products"
+              routerLink="/products"
               >Products</a
             >
             <a
               class="rounded-md px-3 py-2 text-sm font-medium text-black hover:text-green-700"
               routerLinkActive="bg_main text-white  hover:text-white"
-              routerLink="categories"
+              routerLink="/categories"
               >Category</a
             >
             <a
               class="rounded-md px-3 py-2 text-sm font-medium text-black hover:text-green-700"
               routerLinkActive="bg_main text-white  hover:text-white"
-              routerLink="brand"
+              routerLink="/brand"
             >
               Brands</a
             >
-            <a
-            class="rounded-md px-3 py-2 text-sm font-medium text-black hover:text-green-700"
-            routerLinkActive="bg_main text-white  hover:text-white"
-            routerLink="cart"
-            >Cart</a
-          >
+        
           </div>
         </div>
         }
@@ -113,6 +108,13 @@
           <li><i class="fa-brands fa-tiktok m-2 text-black"></i></li>
         </ul>
         @if (_AuthService.userData.getValue()) {
+         
+          <i routerLink="/cart" class=" cursor-pointer fa fa-cart-shopping text-xl main_Text"></i>
+          @if (_CartService.cartListquantity.getValue() !=0) {
+          <span routerLink="/cart" class="  bg-red-500 text-white badge badge-warning translate-y-[-50%] translate-x-[-50%] m-0 text-sm rounded-full h-6 w-6 p-0 flex justify-center items-center" id="lblCartCount">
+            {{_CartService.cartListquantity.getValue()}}
+          </span>
+        }
         <a
           class="rounded-md px-3 py-2 text-sm font-medium text-black cursor-pointer hover:text-green-700"
           (click)="logout()"
@@ -142,43 +144,49 @@
   <!-- Mobile menu, show/hide based on menu state. -->
   @if (clicked) {
 
-  <div class="sm:hidden  " @openclose  id="mobile-menu">
+  <div class="sm:hidden" @openclose id="mobile-menu">
     <div class="space-y-1 px-2 pb-3 pt-2">
       @if (_AuthService.userData.getValue()) {
-      <a (click)="choosed()" 
+      <a
+        (click)="choosed()"
         class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-[#08ac0a] hover:text-gray-50"
         routerLinkActive="bg_main text-white hover:bg-[#085209] hover:text-white"
         routerLink="home"
         >Home</a
       >
-     
-      <a (click)="choosed()"
+
+      <a
+        (click)="choosed()"
         class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-[#08ac0a] hover:text-gray-50"
         routerLinkActive="bg_main text-white hover:bg-[#085209] hover:text-white"
         routerLink="products"
         >Products</a
       >
-      <a (click)="choosed()"
+      <a
+        (click)="choosed()"
         class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-[#08ac0a] hover:text-gray-50"
         routerLinkActive="bg_main text-white hover:bg-[#085209] hover:text-white"
         routerLink="categories"
         >category</a
       >
-      <a (click)="choosed()"
+      <a
+        (click)="choosed()"
         class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-[#08ac0a] hover:text-gray-50"
         routerLinkActive="hover:bg-[#085209] bg_main text-white hover:bg-[#085209]  hover:text-white"
         routerLink="brand"
         >brand</a
       >
-      <a (click)="choosed()"
-      class="block rounded-md px-3 py-2 text-base font-medium text-black hover:bg-[#08ac0a] hover:text-gray-50"
-      routerLinkActive="bg_main text-white hover:bg-[#085209] hover:text-white"
-      routerLink="cart"
-      >cart</a
-    >
+ 
       <ul
         class="rounded-md px-3 py-2 text-base font-medium text-black flex-row flex justify-center align-middle space-x-2"
       >
+      <i routerLink="/cart" class=" cursor-pointer fa fa-cart-shopping text-xl main_Text"></i>
+      @if (_CartService.cartListquantity.getValue() !=0) {
+        <span routerLink="/cart" class="  bg-red-500 text-white badge badge-warning translate-y-[-50%] translate-x-[-50%] m-0 text-sm rounded-full h-6 w-6 p-0 flex justify-center items-center" id="lblCartCount">
+          {{_CartService.cartListquantity.getValue()}}
+        </span>
+      }
+
         <a
           class="hover:bg-[#08ac0a] hover:text-white p-2 rounded-xl cursor-pointer"
           (click)="logout()"

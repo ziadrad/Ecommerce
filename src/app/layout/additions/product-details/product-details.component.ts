@@ -7,6 +7,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CartService } from '../../../shared/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -51,7 +53,7 @@ export class ProductDetailsComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _router: Router,
     @Inject(PLATFORM_ID) private platform_id:object,
-    public _ProductsService: ProductsService){}
+    public _ProductsService: ProductsService,private _CartService:CartService,private toester:ToastrService){}
 
   id: string | null = this._ActivatedRoute.snapshot.paramMap.get('id');
   ngOnInit(): void {
@@ -89,6 +91,18 @@ export class ProductDetailsComponent implements OnInit {
 
     }
   }
-  
+
+  addProductToCart(id:string){
+    this._CartService.AddProductToCart(id).subscribe({
+      next:(res)=>{
+        this._CartService.cartListquantity.next(res.numOfCartItems)
+        this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
+      },
+      error:(error)=>{
+        this.toester.error('Error Happend ',"",{positionClass:'toast-bottom-right'});
+
+      }
+    })
+      }
 
 }

@@ -1,5 +1,5 @@
 <div class="flex flex-1 justify-center items-center flex-col">
-    <app-search></app-search>
+    <app-search (userWord)="reciveUserWord($event)"></app-search>
   
  
 
@@ -14,7 +14,7 @@
     
 
 
-   <app-product-row [isloading]="isloading" ></app-product-row>
+   <app-product-row [userWord]="UserWord" [isloading]="isloading" ></app-product-row>
         <div class="flex flex-col items-center pb-5">
         <!-- Help text -->
         <span class="text-sm text-gray-700 dark:text-gray-400">
