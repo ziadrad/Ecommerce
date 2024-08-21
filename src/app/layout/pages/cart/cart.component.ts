@@ -1,4 +1,4 @@
-import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
+import { CurrencyPipe, isPlatformBrowser, NgClass } from '@angular/common';
 import { afterNextRender, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { error } from 'console';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CurrencyPipe,RouterLink],
+  imports: [CurrencyPipe,RouterLink,NgClass],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   animations: [
@@ -27,6 +27,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CartComponent  implements OnInit{
   cartListData!:Data
   isloading:boolean = true;
+  priceupdating:boolean = false;
   constructor(@Inject(PLATFORM_ID) private id:object,private _CartService:CartService, private _Router:Router, private toest:ToastrService)
   {
     if (isPlatformBrowser(id)) {
@@ -62,11 +63,13 @@ this._Router.navigate(['/home'])
     //this function change product count in the api
 
   ChangeProductQuauntity(quantity:number,productId:string){
-    if (quantity<=0) {
+    if (quantity <= 0) {
       this.DeleteProduct(productId);
-    }
+    }else{
+      this.priceupdating =true
     this._CartService.updatProductQuantity(quantity.toString(),productId).subscribe({
       next:(res)=>{
+        this.priceupdating = false
         this.cartListData = res.data
         this._CartService.cartListquantity.next(res.numOfCartItems)
 
@@ -76,13 +79,13 @@ this._Router.navigate(['/home'])
       }
     })
   }
+  }
 
    //this function delete product from the api
   DeleteProduct(productId:string){
     if (this.cartListData.products == null) {
       this.DeletCart()
     }
-    console.log(this.cartListData.products)
     this.isloading =true;
     this._CartService.RemoveProductFromCart(productId).subscribe({
       next:(res)=>{

@@ -30,9 +30,7 @@ ngOnInit(): void {
   this._CartService.getCart().subscribe({
     next:(res)=>{
       this._CartService.cartListquantity.next(res.numOfCartItems)
-      console.log(this._CartService.cartListquantity.getValue())
-    
-    },
+        },
     error:(error)=>{
     this._CartService.cartListquantity.next(0)
     this._Router.navigate(['/home'])
