@@ -86,12 +86,15 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
   class="w-72 card_ flex justify-center items-center  bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl hover:cursor-pointer"
 >
   <a  [@openclose] class="relative flex flex-col justify-center items-center overflow-hidden">
-    <div (click)="product_details_navigate(product.id)">
+    <div class="relative" (click)="product_details_navigate(product.id)">
+
     <img
+    
       [src]="product.imageCover"
-      alt="Product"
+      [alt]="product.description"
       class="h-80 w-72 object-cover rounded-t-xl"
     />
+      
     <div class="px-4 py-3 w-72  ">
       <span class="text-green-600 mr-3 uppercase text-xs">{{
         product.brand.name

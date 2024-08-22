@@ -33,6 +33,7 @@ import { error } from 'console';
 })
 export class ProductRowComponent implements OnInit{
   products_state: 'open' | 'closed' = 'open';
+  imgLoad:boolean = false;
 @Input() userWord:string = '';
   errormsg: string = '';
  @Input() isloading: boolean = true;
@@ -47,6 +48,7 @@ current_page!:string|null;
     private _router: Router
   ) {
 
+    this.imgLoad = false;
     if (isPlatformBrowser(id)) {
       localStorage.setItem('current_page', '/products');
     }

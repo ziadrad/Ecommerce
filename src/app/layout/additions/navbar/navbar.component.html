@@ -140,7 +140,7 @@
         >
         }
       </div>
-      <div class=" sm:hidden flex-1 flex items-center justify-center ">
+      <div class="flex sm:hidden items-center justify-center ">
         <i @openclose routerLink="/cart" class=" relative cursor-pointer fa fa-cart-shopping text-xl main_Text"></i>
         @if (_CartService.cartListquantity.getValue() !=0) {
           <span @openclose routerLink="/cart" class=" absolute bg-red-500 text-white badge badge-warning translate-y-[-50%] translate-x-[-50%] m-0 text-sm rounded-full h-6 w-6 p-0 flex justify-center items-center" id="lblCartCount">
