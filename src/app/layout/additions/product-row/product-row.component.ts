@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Component, Inject, Input, input, OnInit, PLATFORM_ID, ViewChild, viewChild } from '@angular/core';
 import { Product } from '../../../shared/interfaces/products_interface';
 import { ProductsService } from '../../../shared/services/products/products.service';
@@ -14,7 +14,7 @@ import { error } from 'console';
 @Component({
   selector: 'app-product-row',
   standalone: true,
-  imports: [SearchPipe],
+  imports: [SearchPipe,NgOptimizedImage],
   templateUrl: './product-row.component.html',
   styleUrl: './product-row.component.scss',
    animations: [
@@ -32,6 +32,7 @@ import { error } from 'console';
   ],
 })
 export class ProductRowComponent implements OnInit{
+ 
   products_state: 'open' | 'closed' = 'open';
   imgLoad:boolean = false;
 @Input() userWord:string = '';

@@ -14,10 +14,17 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   animations: [
-    trigger('openclose', [
+    trigger('open', [
       transition(':enter', [
         style({ opacity: 0 }),
         animate('0.5s ease-in', style({ opacity: 1 })),
+      ]),
+
+    ]),
+    trigger('close', [
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('0.5s ease-in', style({ opacity: 0 })),
       ]),
 
     ]),
@@ -27,7 +34,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CartComponent  implements OnInit{
   cartListData!:Data
   isloading:boolean = true;
-  priceupdating:boolean = false;
+  updating:boolean = false;
   constructor(@Inject(PLATFORM_ID) private id:object,private _CartService:CartService, private _Router:Router, private toest:ToastrService)
   {
     if (isPlatformBrowser(id)) {
@@ -66,15 +73,16 @@ this._Router.navigate(['/home'])
     if (quantity <= 0) {
       this.DeleteProduct(productId);
     }else{
-      this.priceupdating =true
+      this.updating =true
     this._CartService.updatProductQuantity(quantity.toString(),productId).subscribe({
       next:(res)=>{
-        this.priceupdating = false
+        this.updating = false
         this.cartListData = res.data
         this._CartService.cartListquantity.next(res.numOfCartItems)
 
       },
       error:(error)=>{
+        this.updating = false;
         console.log(error)
       }
     })
@@ -86,14 +94,15 @@ this._Router.navigate(['/home'])
     if (this.cartListData.products == null) {
       this.DeletCart()
     }
-    this.isloading =true;
+    this.updating = true;
     this._CartService.RemoveProductFromCart(productId).subscribe({
       next:(res)=>{
-        this.isloading = false
+        this.updating = false;
         this.cartListData = res.data;
         this._CartService.cartListquantity.next(res.numOfCartItems)
       },
       error:(error)=>{
+        this.updating = false
         console.log(error);
       }
     })
