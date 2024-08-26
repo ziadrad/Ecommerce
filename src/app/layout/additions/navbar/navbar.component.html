@@ -99,9 +99,14 @@
         }
         
       </div>
+    
       <div
         class="ms-auto absolute inset-y-0 right-0 hidden sm:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6"
       >
+      <a routerLink="/wishList" >
+        <i class="fa-solid fa-heart main_Text text-xl"></i>
+      </a>
+
         <ul class="hidden lg:flex flex-row justify-between p-6 align-middle">
           <li><i class="fa-brands fa-facebook m-2 text-black"></i></li>
           <li><i class="fa-brands fa-instagram m-2 text-black"></i></li>
@@ -110,7 +115,8 @@
           <li><i class="fa-brands fa-tiktok m-2 text-black"></i></li>
         </ul>
         @if (_AuthService.userData.getValue()) {
-         
+      
+
           <i @openclose routerLink="/cart" class=" cursor-pointer fa fa-cart-shopping text-xl main_Text"></i>
           @if (_CartService.cartListquantity.getValue() !=0) {
           <span @openclose routerLink="/cart" class="  bg-red-500 text-white badge badge-warning translate-y-[-50%] translate-x-[-50%] m-0 text-sm rounded-full h-6 w-6 p-0 flex justify-center items-center" id="lblCartCount">
@@ -140,14 +146,17 @@
         >
         }
       </div>
-      <div class="flex sm:hidden items-center justify-center ">
-        <i @openclose routerLink="/cart" class=" relative cursor-pointer fa fa-cart-shopping text-xl main_Text"></i>
+    
+      <a routerLink="/cart"
+      routerLink="/cart" class="flex sm:hidden items-center justify-center ">
+    
+        <i @openclose  class=" relative cursor-pointer fa fa-cart-shopping text-xl main_Text"></i>
         @if (_CartService.cartListquantity.getValue() !=0) {
-          <span @openclose routerLink="/cart" class=" absolute bg-red-500 text-white badge badge-warning translate-y-[-50%] translate-x-[-50%] m-0 text-sm rounded-full h-6 w-6 p-0 flex justify-center items-center" id="lblCartCount">
+          <span @openclose  class=" absolute bg-red-500 text-white badge badge-warning translate-y-[-50%] translate-x-[-50%] m-0 text-sm rounded-full h-6 w-6 p-0 flex justify-center items-center" id="lblCartCount">
             {{_CartService.cartListquantity.getValue()}}
           </span>
         }
-      </div>
+      </a>
     </div>
   </div>
 

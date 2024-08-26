@@ -10,6 +10,7 @@ import { CartComponent } from '../../pages/cart/cart.component';
 import { CartService } from '../../../shared/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { error } from 'console';
+import { WishlistService } from '../../../shared/services/wishList/wishlist.service';
 
 @Component({
   selector: 'app-product-row',
@@ -32,13 +33,13 @@ import { error } from 'console';
   ],
 })
 export class ProductRowComponent implements OnInit{
- 
   products_state: 'open' | 'closed' = 'open';
   imgLoad:boolean = false;
 @Input() userWord:string = '';
   errormsg: string = '';
  @Input() isloading: boolean = true;
 current_page!:string|null;
+WishList:String[]=[]
 
   constructor(
     @Inject(PLATFORM_ID) private id: object,
@@ -46,9 +47,9 @@ current_page!:string|null;
     public _ProductsService: ProductsService,
     private _CartService:CartService,
     private toester:ToastrService,
-    private _router: Router
+    private _router: Router,
+    private _WishlistService:WishlistService
   ) {
-
     this.imgLoad = false;
     if (isPlatformBrowser(id)) {
       localStorage.setItem('current_page', '/products');
@@ -57,6 +58,12 @@ current_page!:string|null;
   ngOnInit(): void {
     // this to check if products is in session storage
       this.productFetch(1);
+      this._WishlistService.GetWishList().subscribe({
+        next:(res)=>{
+for (let i = 0; i < res.data.length; i++) {
+this.WishList.push(res.data[i].id)  
+}        }
+      })
       
   }
 
@@ -81,16 +88,51 @@ current_page!:string|null;
   product_details_navigate(id: any) {
     this._router.navigate(['/product_details', { id: id }]);
   }
-  addProductToCart(id:string){
+
+  //this function is used to Add product to cart
+
+  addProductToCart(id:string,e:any){
+
     this._CartService.AddProductToCart(id).subscribe({
       next:(res)=>{
         this._CartService.cartListquantity.next(res.numOfCartItems)
         this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
+        let  html:string = ` <i class="fa-solid fa-add"></i> Add to Cart`
+        e.srcElement.innerHTML = html
       },
       error:(error)=>{
         this.toester.error('Error Happend ',"",{positionClass:'toast-bottom-right'});
 
       }
     })
-      }
+    }
+
+  addtoWishList(id:string){
+    this.isloading = true;
+this._WishlistService.AddProductToWishList(id).subscribe({
+  next:(res)=>{
+  this.WishList = res.data;
+  this.isloading =false;
+    this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
+  },
+  error:(error)=>{
+    this.toester.error(error.error.message,"",{positionClass:'toast-bottom-right'});
+
+  }
+})
+    }
+    removeFromWishList(id:string){
+      this.isloading =true
+      this._WishlistService.RemoveProductToWishList(id).subscribe({
+        next:(res)=>{
+          this.isloading =false
+          this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
+          this.WishList = res.data
+        },
+          error:(error)=>{
+    this.toester.error(error.error.message,"",{positionClass:'toast-bottom-right'});
+
+  }
+      })
+    }
 }

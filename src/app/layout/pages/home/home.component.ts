@@ -4,11 +4,12 @@ import { ProducsComponent } from "../products/products.component";
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategorySliderComponent } from "../../additions/category-slider/category-slider.component";
 import { ProductRowComponent } from "../../additions/product-row/product-row.component";
+import { AllordersComponent } from "../../additions/allorders/allorders.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ProducsComponent, CarouselModule, CategorySliderComponent, ProductRowComponent],
+  imports: [ProducsComponent, CarouselModule, CategorySliderComponent, ProductRowComponent, AllordersComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

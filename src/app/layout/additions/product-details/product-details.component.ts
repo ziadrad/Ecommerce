@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { log } from 'console';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import { Product } from '../../../shared/interfaces/products_interface';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, Location } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
@@ -47,12 +47,15 @@ export class ProductDetailsComponent implements OnInit {
   }
   poduct!: Product ;
   isloading: boolean = true;
+  addingtocart:boolean = false;
 
 
   constructor(
     private _ActivatedRoute: ActivatedRoute,
     private _router: Router,
+    private _location: Location,
     @Inject(PLATFORM_ID) private platform_id:object,
+    
     public _ProductsService: ProductsService,private _CartService:CartService,private toester:ToastrService){}
 
   id: string | null = this._ActivatedRoute.snapshot.paramMap.get('id');
@@ -79,22 +82,16 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   
-  go_Products(){
-    if (isPlatformBrowser(this.platform_id)) {
-     let current_page = localStorage.getItem('current_page')
-      if (current_page === '/home') {
-        this._router.navigate(['/home'])
-
-      }else{
-      this._router.navigate(['/products'])
-      }
-
-    }
+  go_Back(){
+  
+    this._location.back();
   }
 
   addProductToCart(id:string){
+    this.addingtocart = true;
     this._CartService.AddProductToCart(id).subscribe({
       next:(res)=>{
+        this.addingtocart = false;
         this._CartService.cartListquantity.next(res.numOfCartItems)
         this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
       },

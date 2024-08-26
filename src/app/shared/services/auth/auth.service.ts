@@ -33,7 +33,7 @@ export class AuthService {
   // this function get last page user used and navigate to it
   last_page_navegation() {
     const last_page = localStorage.getItem('current_page');
-    this._Route.navigate([last_page]);
+   // this._Route.navigate([last_page]);
   }
 
   // this function connect to api and post registeration data of user to api

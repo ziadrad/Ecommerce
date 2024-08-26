@@ -1,15 +1,30 @@
-@if (errormsg) {
-  <div
+@if (isloading == false ) {
+@if ( wishlist.length == 0 || wishlist==undefined  ) {
+    <div>
+    <h2 class="text-5xl text-gray-500 text-center"> No Items in Wish List</h2>
+</div>
+}
+
+@else {
+    <h2 class="text-center text-5xl py-5 text-gray-800">WishList</h2>
+}
+
+}
+
+
+
+@if (errorMsg) {
+    <div
     class="p-5 text-center text-red-800 rounded-lg my-10 capitalize bg-red-50 text-4xl dark:text-red-500"
     role="alert"
   >
-
   <h2 class="capitalize">  not found</h2>
   
   </div>
-  } @else { 
+    } @else { 
+
 <div @openclose
-class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center justify-center gap-y-7 gap-x-7 mt-10 mb-5"
+class="w-10/12 mx-auto pb-4  grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center justify-center gap-y-7 gap-x-7 mt-10 mb-5"
 >
 <!-- error msg  -->
 
@@ -37,7 +52,7 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
   class="card w-72 bg-white shadow-md rounded-xl duration-500"
 >
   <div class="shimmerBG media"></div>
-  <div class="p-16">
+  <div class="p-32">
     <div class="shimmerBG title-line"></div>
     <div class="shimmerBG title-line end"></div>
 
@@ -53,7 +68,7 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
   class="card w-72 bg-white shadow-md rounded-xl duration-500"
 >
   <div  class="shimmerBG media"></div>
-  <div  class="p-16">
+  <div  class="p-32">
     <div class="shimmerBG title-line"></div>
     <div class="shimmerBG title-line end"></div>
 
@@ -69,7 +84,7 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
   class="card w-72 bg-white shadow-md rounded-xl duration-500"
 >
   <div  class="shimmerBG media"></div>
-  <div  class="p-16">
+  <div  class="p-32">
     <div class="shimmerBG title-line"></div>
     <div class="shimmerBG title-line end"></div>
 
@@ -80,42 +95,19 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
     <div class="shimmerBG content-line end"></div>
   </div>
 </div>
-@for (product of _ProductsService.product_List; track $index) {
-  <div
- 
-  class="card w-72 bg-white shadow-md rounded-xl duration-500"
->
-  <div class="shimmerBG media"></div>
-  <div class="p-16">
-    <div class="shimmerBG title-line"></div>
-    <div class="shimmerBG title-line end"></div>
-
-    <div class="shimmerBG content-line m-t-24"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line end"></div>
-  </div>
-</div>
-}
 } @else {
+  
 <!-- Products cards -->
-@for (product of _ProductsService.product_List|search :userWord; track $index ;) {
+@for (product of wishlist; track $index ;) {
 
 <div
    [@openclose]  
   class="w-72 card_ flex justify-center items-center  bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl hover:cursor-pointer"
 >
   <a  [@openclose] class="relative flex flex-col justify-center items-center overflow-hidden">
-    <a  class="absolute top-3 right-5 hearticon opacity-0 transition-opacity duration-700 "> 
-      @if (WishList.includes( product.id)) {
-        <i  (click)="removeFromWishList(product.id)" class=" fa-solid text-3xl main_Text z-200 fa-heart"></i>
+    <a (click)="removeFromWishList(product.id)" class="absolute top-3 right-5 hearticon opacity-0 transition-opacity duration-700 ">
+         <i class=" fa-solid text-3xl main_Text z-200 fa-heart"></i></a>
 
-      }@else {
-        <i  (click)="addtoWishList(product.id)" class=" fa-solid text-3xl main_Text z-200 fa-heart-crack"></i>
-
-      }
-    </a>
     <div class="" (click)="product_details_navigate(product.id)">
 
     <img
@@ -167,4 +159,4 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
 
 } } 
 </div>
-  }
+}
