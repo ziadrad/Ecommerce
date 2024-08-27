@@ -27,6 +27,7 @@ constructor(public _CartService:CartService,public _AuthService:AuthService,@Inj
 }
 
 ngOnInit(): void {
+  if(this._AuthService.userData){
   this._CartService.getCart().subscribe({
     next:(res)=>{
       this._CartService.cartListquantity.next(res.numOfCartItems)
@@ -37,6 +38,7 @@ ngOnInit(): void {
     }
     
     })
+  }
 }
 clicked:boolean = false;
 // this function toggle the navbar menu

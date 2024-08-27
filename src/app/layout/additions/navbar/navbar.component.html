@@ -103,10 +103,12 @@
       <div
         class="ms-auto absolute inset-y-0 right-0 hidden sm:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6"
       >
+      @if (_AuthService.userData.getValue()) {
+
       <a routerLink="/wishList" >
         <i class="fa-solid fa-heart main_Text text-xl"></i>
       </a>
-
+    }
         <ul class="hidden lg:flex flex-row justify-between p-6 align-middle">
           <li><i class="fa-brands fa-facebook m-2 text-black"></i></li>
           <li><i class="fa-brands fa-instagram m-2 text-black"></i></li>
@@ -146,7 +148,12 @@
         >
         }
       </div>
-    
+      @if (_AuthService.userData.getValue()) {
+        <a routerLink="/wishList" class="me-5 sm:hidden " >
+          <i class="fa-solid fa-heart main_Text text-2xl"></i>
+        </a>
+     
+      }
       <a routerLink="/cart"
       routerLink="/cart" class="flex sm:hidden items-center justify-center ">
     
