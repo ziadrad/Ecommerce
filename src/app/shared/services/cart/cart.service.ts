@@ -3,6 +3,7 @@ import { afterNextRender, Inject, Injectable, PLATFORM_ID } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Environment } from '../../../base/Environment';
 import { AddproductRes, cartRes, Data } from '../../interfaces/cart_interface';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CartService {
   cartListquantity = new BehaviorSubject<Number>(0)
   UserToken:any = {}
   constructor(private __httpClient:HttpClient,@Inject(PLATFORM_ID) private id:object) {
-    if (typeof document != 'undefined') {
+    if (isPlatformBrowser(id)) {
       this.UserToken = {
         token :localStorage.getItem('User_Token')||''
       }

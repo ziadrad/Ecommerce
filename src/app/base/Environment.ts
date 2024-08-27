@@ -1,4 +1,4 @@
 export enum Environment{
 baseUrl = "https://ecommerce.routemisr.com",
-Host = 'http://localhost:4200'
+Host = 'https://ecommerce-phi-jet-33.vercel.app/'
 }
