@@ -27,7 +27,8 @@ constructor(public _CartService:CartService,public _AuthService:AuthService,@Inj
 }
 
 ngOnInit(): void {
-  if(this._AuthService.userData){
+  if(this._AuthService.userData.getValue()){
+  
   this._CartService.getCart().subscribe({
     next:(res)=>{
       this._CartService.cartListquantity.next(res.numOfCartItems)
