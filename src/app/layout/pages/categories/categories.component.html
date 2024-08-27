@@ -1,1 +1,8 @@
-<p>categories works!</p>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 ">
+    @for (category of categoryList; track $index) {
+        <div [routerLink]="['/categoryDetals',category._id] " class="category relative"  >
+            <img class="w-full h-[500px]" [src]="category.image" alt="">
+            <div class="overlay flex justify-center items-center transition-opacity duration-500 "> <h3 class="text-gray-900 text-2xl font-semibold">{{category.name}}</h3></div>
+        </div>
+    }
+</div>

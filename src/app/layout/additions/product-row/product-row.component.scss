@@ -8,8 +8,12 @@ body {
   .card_:hover .card-body{
 opacity: 0;
   }
+  .hearticon{
+    top: 1.25rem;
+  }
   .card_:hover .hearticon{
 opacity: 1;
+top: 0.75rem;
   }
   .card_:hover .btn{
     transform: translateY(0px);

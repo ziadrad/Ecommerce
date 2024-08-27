@@ -17,11 +17,11 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
 
 <!-- loading shimmer effect -->
 <div
- 
+  
   class="card w-72 bg-white shadow-md rounded-xl duration-500"
 >
   <div class="shimmerBG media"></div>
-  <div class="p-32">
+  <div class="p-16">
     <div class="shimmerBG title-line"></div>
     <div class="shimmerBG title-line end"></div>
 
@@ -107,7 +107,7 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
   class="w-72 card_ flex justify-center items-center  bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl hover:cursor-pointer"
 >
   <a  [@openclose] class="relative flex flex-col justify-center items-center overflow-hidden">
-    <a  class="absolute top-3 right-5 hearticon opacity-0 transition-opacity duration-700 "> 
+    <a  class="absolute right-5 hearticon opacity-0 transition-all duration-700 "> 
       @if (WishList.includes( product.id)) {
         <i  (click)="removeFromWishList(product.id)" class=" fa-solid text-3xl main_Text z-200 fa-heart"></i>
 

@@ -30,6 +30,7 @@
     "ngx-owl-carousel-o": "^17.0.0",
     "ngx-pagination": "^6.0.3",
     "ngx-slick-carousel": "^17.0.0",
+    "ngx-spinner": "^17.0.0",
     "ngx-toast-notify": "^3.0.10",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",

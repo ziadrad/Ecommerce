@@ -7,6 +7,7 @@ import { product } from '../../../../shared/interfaces/wishList_interface';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Coords } from 'ngx-owl-carousel-o/lib/services/carousel.service';
 import { Console } from 'console';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-wishlist',
@@ -31,28 +32,35 @@ import { Console } from 'console';
 export class WishlistComponent implements OnInit {
   isloading:boolean = false;
   errorMsg:string = '';
-  wishlist!:product[]
+  wishlist:product[] = []
+
+  constructor(private _CartService:CartService,private spinner:NgxSpinnerService,private _WishlistService:WishlistService,private toester:ToastrService,private _router:Router){
+
+  }
   ngOnInit(): void {
     this.GetWishList()
   }
-  constructor(private _CartService:CartService,private _WishlistService:WishlistService,private toester:ToastrService,private _router:Router){
-    console.log(this.wishlist)
-  }
-
     //this function is used to Add product to cart
 
     addProductToCart(id:string,e:any){
       let X=e.srcElement
       let  html:string = `<i class="fa fa-spinner fa-spin "></i>`
       X.innerHTML = html
+      this.spinner.show()
        this._CartService.AddProductToCart(id).subscribe({
+        
          next:(res)=>{
+          
+
            this._CartService.cartListquantity.next(res.numOfCartItems)
            this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
            let  html:string = ` <i class="fa-solid fa-add"></i> Add to Cart`
            X.innerHTML = html
+           this.spinner.hide()
+
          },
          error:(error)=>{
+          this.spinner.hide()
            this.toester.error('Error Happend ',"",{positionClass:'toast-bottom-right'});
    
          }
@@ -64,16 +72,15 @@ export class WishlistComponent implements OnInit {
       }
     
       GetWishList(){
-        this.isloading=true;
+        this.spinner.show()
         this._WishlistService.GetWishList().subscribe({
           next:(res)=>{
-            this.isloading =false;
            this.wishlist = res.data;
-           console.log(this.wishlist)
-
+           this.spinner.hide()
           },
           error:(error)=>{
-            this.isloading = false
+            this.spinner.hide()
+
     this.toester.error(error.error.message,"",{positionClass:'toast-bottom-right'});
 
   }
@@ -81,15 +88,17 @@ export class WishlistComponent implements OnInit {
       }
 
       removeFromWishList(id:string){
-        this.isloading = true
+        this.spinner.show()
         this._WishlistService.RemoveProductToWishList(id).subscribe({
           next:(res)=>{
-            this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
+
          this.GetWishList()
+         this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
 
           },
             error:(error)=>{
-              this.isloading = false
+              this.spinner.hide()
+
       this.toester.error(error.error.message,"",{positionClass:'toast-bottom-right'});
   
     }

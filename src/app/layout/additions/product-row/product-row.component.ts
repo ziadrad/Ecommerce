@@ -11,11 +11,13 @@ import { CartService } from '../../../shared/services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { error } from 'console';
 import { WishlistService } from '../../../shared/services/wishList/wishlist.service';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-row',
   standalone: true,
-  imports: [SearchPipe,NgOptimizedImage],
+  imports: [SearchPipe,NgOptimizedImage,NgxSpinnerModule
+  ],
   templateUrl: './product-row.component.html',
   styleUrl: './product-row.component.scss',
    animations: [
@@ -47,6 +49,7 @@ WishList:String[]=[]
     public _ProductsService: ProductsService,
     private _CartService:CartService,
     private toester:ToastrService,
+    private _NgxSpinnerService:NgxSpinnerService,
     private _router: Router,
     private _WishlistService:WishlistService
   ) {
@@ -56,6 +59,7 @@ WishList:String[]=[]
     }
   }
   ngOnInit(): void {
+
     // this to check if products is in session storage
       this.productFetch(1);
       this._WishlistService.GetWishList().subscribe({
@@ -77,6 +81,7 @@ this.WishList.push(res.data[i].id)
         this._ProductsService.metadata = res.metadata;
       },
       error: (error) => {
+        this._NgxSpinnerService.hide()
         //this function is error handling
         this.errormsg = error.error.message;
         this.isloading = false;
@@ -92,7 +97,8 @@ this.WishList.push(res.data[i].id)
   //this function is used to Add product to cart
 
   addProductToCart(id:string,e:any){
-
+    let  html:string = ` <i class="fa fa-spinner fa-spin"></i>`
+        e.srcElement.innerHTML = html
     this._CartService.AddProductToCart(id).subscribe({
       next:(res)=>{
         this._CartService.cartListquantity.next(res.numOfCartItems)
@@ -108,28 +114,34 @@ this.WishList.push(res.data[i].id)
     }
 
   addtoWishList(id:string){
-    this.isloading = true;
+    this._NgxSpinnerService.show()
+
 this._WishlistService.AddProductToWishList(id).subscribe({
   next:(res)=>{
   this.WishList = res.data;
   this.isloading =false;
     this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
+    this._NgxSpinnerService.hide()
   },
   error:(error)=>{
+    this._NgxSpinnerService.hide()
+
     this.toester.error(error.error.message,"",{positionClass:'toast-bottom-right'});
 
   }
 })
     }
     removeFromWishList(id:string){
-      this.isloading =true
+      this._NgxSpinnerService.show()
       this._WishlistService.RemoveProductToWishList(id).subscribe({
         next:(res)=>{
+          this._NgxSpinnerService.hide()
           this.isloading =false
           this.toester.success(res.message,"",{positionClass:'toast-bottom-right'});
           this.WishList = res.data
         },
           error:(error)=>{
+            this._NgxSpinnerService.hide()
     this.toester.error(error.error.message,"",{positionClass:'toast-bottom-right'});
 
   }

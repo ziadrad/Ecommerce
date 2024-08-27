@@ -26,76 +26,6 @@
 <div @openclose
 class="w-10/12 mx-auto pb-4  grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center justify-center gap-y-7 gap-x-7 mt-10 mb-5"
 >
-<!-- error msg  -->
-
-  @if(isloading){
-
-<!-- loading shimmer effect -->
-<div
- 
-  class="card w-72 bg-white shadow-md rounded-xl duration-500"
->
-  <div class="shimmerBG media"></div>
-  <div class="p-32">
-    <div class="shimmerBG title-line"></div>
-    <div class="shimmerBG title-line end"></div>
-
-    <div class="shimmerBG content-line m-t-24"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line end"></div>
-  </div>
-</div>
-<div
-  
-  class="card w-72 bg-white shadow-md rounded-xl duration-500"
->
-  <div class="shimmerBG media"></div>
-  <div class="p-32">
-    <div class="shimmerBG title-line"></div>
-    <div class="shimmerBG title-line end"></div>
-
-    <div class="shimmerBG content-line m-t-24"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line end"></div>
-  </div>
-</div>
-<div
-  
-  class="card w-72 bg-white shadow-md rounded-xl duration-500"
->
-  <div  class="shimmerBG media"></div>
-  <div  class="p-32">
-    <div class="shimmerBG title-line"></div>
-    <div class="shimmerBG title-line end"></div>
-
-    <div class="shimmerBG content-line m-t-24"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line end"></div>
-  </div>
-</div>
-<div
-  
-  class="card w-72 bg-white shadow-md rounded-xl duration-500"
->
-  <div  class="shimmerBG media"></div>
-  <div  class="p-32">
-    <div class="shimmerBG title-line"></div>
-    <div class="shimmerBG title-line end"></div>
-
-    <div class="shimmerBG content-line m-t-24"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line"></div>
-    <div class="shimmerBG content-line end"></div>
-  </div>
-</div>
-} @else {
   
 <!-- Products cards -->
 @for (product of wishlist; track $index ;) {
@@ -157,6 +87,6 @@ class="w-10/12 mx-auto pb-4  grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 item
 
 </div>
 
-} } 
+} 
 </div>
 }

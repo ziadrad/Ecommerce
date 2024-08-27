@@ -13,6 +13,8 @@ import { ForgetPasswordMainComponent } from './layout/additions/forget_password/
 import { CheckoutMainComponent } from './layout/additions/checkout/checkout.main/checkout.main.component';
 import { AllordersComponent } from './layout/additions/allorders/allorders.component';
 import { WishlistComponent } from './layout/additions/wishList/wishlist/wishlist.component';
+import { CategoryDetailsComponent } from './layout/additions/category-details/category-details.component';
+import { BrandDetailsComponent } from './layout/additions/brand-details/brand-details.component';
 
 export const routes: Routes = [
     
@@ -23,6 +25,8 @@ export const routes: Routes = [
     {path:"cart", component:CartComponent,canActivate:[authGuard]},
     {path:"wishList", component:WishlistComponent,canActivate:[authGuard]},
     {path:'checkout/:cartid', component:CheckoutMainComponent,canActivate:[authGuard]},
+    {path:'categoryDetals/:catid', component:CategoryDetailsComponent,canActivate:[authGuard]},
+    {path:'brandDetals/:brandid', component:BrandDetailsComponent,canActivate:[authGuard]},
     {path:'allorders', component:AllordersComponent,canActivate:[authGuard]},
     {path:"categories", component:CategoriesComponent,canActivate:[authGuard]},
     {path:"brand", component:BrandComponent,canActivate:[authGuard]},

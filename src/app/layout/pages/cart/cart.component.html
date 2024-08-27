@@ -96,13 +96,13 @@
                   </dl>
                 </div>
 
-                <button [disabled]="updating"
+                <button [disabled]="cartListData"
                 [routerLink]="['/checkout',cartListData._id]"
-                class="flex w-full items-center duration-500 transition-all justify-center rounded-lg bg_main hover_bgcolor text-white  px-5 py-2.5 text-sm font-medium  hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Checkout</button>
+                class="flex w-full items-center duration-500 disabled:cursor-not-allowed transition-all justify-center rounded-lg bg_main hover_bgcolor text-white  px-5 py-2.5 text-sm font-medium  hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed to Checkout</button>
 
-                <a  (click)="DeletCart()" class=" duration-500 transition-all cursor-pointer flex w-full items-center justify-center rounded-lg bg-red-500 hover_bgcolor text-white  px-5 py-2.5 text-sm font-medium  hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Remove Cart
+                <button [disabled]="cartListData"  (click)="DeletCart()" class=" disabled:cursor-not-allowed duration-500 transition-all cursor-pointer flex w-full items-center justify-center rounded-lg bg-red-500 hover_bgcolor text-white  px-5 py-2.5 text-sm font-medium  hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Remove Cart
                   <i class="fa fa-cart-shopping ms-2"></i>
-                </a>
+                </button>
       
                 <div class="flex items-center justify-center gap-2">
                   <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>

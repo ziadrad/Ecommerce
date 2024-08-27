@@ -6,6 +6,7 @@ import { cartRes, Data, Product, Product2 } from '../../../shared/interfaces/car
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Route, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -35,7 +36,7 @@ export class CartComponent  implements OnInit{
   cartListData!:Data
   isloading:boolean = true;
   updating:boolean = false;
-  constructor(@Inject(PLATFORM_ID) private id:object,private _CartService:CartService, private _Router:Router, private toest:ToastrService)
+  constructor(@Inject(PLATFORM_ID) private id:object,private _CartService:CartService,private spinner:NgxSpinnerService, private _Router:Router, private toest:ToastrService)
   {
     if (isPlatformBrowser(id)) {
     
@@ -91,27 +92,26 @@ this._Router.navigate(['/home'])
 
    //this function delete product from the api
   DeleteProduct(productId:string){
-    if (this.cartListData.products == null) {
-      this.DeletCart()
-    }
-    this.updating = true;
+ 
+   this.spinner.show()
     this._CartService.RemoveProductFromCart(productId).subscribe({
       next:(res)=>{
-        this.updating = false;
         this.cartListData = res.data;
         this._CartService.cartListquantity.next(res.numOfCartItems)
+        this.spinner.hide()
       },
       error:(error)=>{
-        this.updating = false
         console.log(error);
       }
     })
   }
 
   DeletCart(){
+   this.isloading =true
     this._CartService.DeletCart().subscribe({
 next:(res)=>{
-  this._Router.navigate(['/home'])
+  this.getCart()
+  
 },
 error:(error)=>{
   console.log(error)

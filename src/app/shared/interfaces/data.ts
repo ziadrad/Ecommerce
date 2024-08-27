@@ -25,4 +25,28 @@ export interface register_data extends login_data ,Email_data {
     rePassword:string;
 }
 
+export interface categoriesRes {
+  results: number;
+  metadata: Metadata;
+  data: Category[];
+}
+
+export interface Category {
+  _id: string;
+  name: string;
+  slug: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Metadata {
+  currentPage: number;
+  numberOfPages: number;
+  limit: number;
+}
+export interface specificCategoryRes {
+  data: Category;
+}
+
 
