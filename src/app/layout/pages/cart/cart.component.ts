@@ -39,6 +39,7 @@ export class CartComponent  implements OnInit{
   constructor(@Inject(PLATFORM_ID) private id:object,private _CartService:CartService,private spinner:NgxSpinnerService, private _Router:Router, private toest:ToastrService)
   {
     if (isPlatformBrowser(id)) {
+      console.log(this.cartListData == undefined)
     
             localStorage.setItem("current_page",'/cart')
           }
@@ -56,6 +57,7 @@ this._CartService.getCart().subscribe({
 
 console.log(res)
 this.cartListData = res.data
+console.log(this.cartListData == undefined||this.cartListData.products.length == 0)
   },
   error:(error)=>{
     this.isloading = false
@@ -114,7 +116,7 @@ next:(res)=>{
   
 },
 error:(error)=>{
-  console.log(error)
+console.log(error)
 }
     });
     
