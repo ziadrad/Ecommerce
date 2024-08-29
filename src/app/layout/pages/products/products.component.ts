@@ -1,8 +1,7 @@
-import { CommonModule, isPlatformBrowser, NgForOf } from '@angular/common';
+import { isPlatformBrowser, NgForOf } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ProductsService } from '../../../shared/services/products/products.service';
 import {
-  Metadata,
   Product,
 } from '../../../shared/interfaces/products_interface';
 import { NgxPaginationModule } from 'ngx-pagination';

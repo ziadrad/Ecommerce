@@ -1,12 +1,11 @@
 import { CurrencyPipe, isPlatformBrowser, NgClass } from '@angular/common';
-import { afterNextRender, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {  Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CartService } from '../../../shared/services/cart/cart.service';
-import { error } from 'console';
-import { cartRes, Data, Product, Product2 } from '../../../shared/interfaces/cart_interface';
+import {  Data, } from '../../../shared/interfaces/cart_interface';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Route, Router, RouterLink } from '@angular/router';
+import {  Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import {  NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',

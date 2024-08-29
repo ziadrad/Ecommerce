@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet, ROUTES } from '@angular/router';
+import {  RouterOutlet,  } from '@angular/router';
 import { NavbarComponent } from "./layout/additions/navbar/navbar.component";
 import { FooterComponent } from "./layout/additions/footer/footer.component";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselComponent, CarouselModule } from 'ngx-owl-carousel-o';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import {  CarouselModule } from 'ngx-owl-carousel-o';
+
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -16,7 +14,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService) {}
+  constructor() {}
 
   ngOnInit() {
 

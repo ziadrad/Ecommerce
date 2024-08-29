@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../../../shared/services/auth/auth.service';
 import { CodeCheckComponent } from "../code-check/code-check.component";
 import { animate, style, transition, trigger } from '@angular/animations';
-import { NgxToastNotifyModule, NgxToastNotifyService } from 'ngx-toast-notify';
+import {  NgxToastNotifyService } from 'ngx-toast-notify';
 
 @Component({
   selector: 'app-forget-password-main',

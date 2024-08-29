@@ -8,7 +8,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import { error } from 'console';
 import { Router } from '@angular/router';
 
 @Component({

@@ -3,7 +3,7 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { CategoriesService } from '../../../shared/services/categories/categories.service';
 import { Category } from '../../../shared/interfaces/data';
 import { RouterLink } from '@angular/router';
-import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import {  NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-categories',

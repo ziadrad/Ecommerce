@@ -18,7 +18,6 @@ export class AuthService {
   userData: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(
     private _HttpClient: HttpClient,
-    private _Route: Router,
     @Inject(PLATFORM_ID) private id: object
   ) {
     // this function is used to avoid function is undefined to server error

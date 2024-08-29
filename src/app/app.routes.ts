@@ -8,7 +8,6 @@ import { NotfoundComponent } from './layout/additions/notfound/notfound.componen
 import { LoginComponent } from './layout/pages/login/login.component';
 import { RegisterComponent } from './layout/pages/register/register.component';
 import { authGuard } from './shared/guard/auth.guard';
-
 import { AllordersComponent } from './layout/additions/allorders/allorders.component';
 
 

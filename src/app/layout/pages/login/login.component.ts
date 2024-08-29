@@ -1,22 +1,18 @@
 import {
   Component,
   Inject,
-  inject,
   PLATFORM_ID,
-  PlatformRef,
 } from '@angular/core';
 import {
   FormGroup,
   FormControl,
   Validators,
-  AbstractControl,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 import { isPlatformBrowser, NgClass } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { routes } from '../../../app.routes';
+
 
 @Component({
   selector: 'app-login',

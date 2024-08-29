@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from '../../../shared/services/checkout/checkout.service';
 import { AuthService } from '../../../shared/services/auth/auth.service';
-import { error } from 'console';
-import { checkoutRes, receipt } from '../../../shared/interfaces/checkout_interface';
+import {  receipt } from '../../../shared/interfaces/checkout_interface';
 import { CurrencyPipe, NgClass } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 

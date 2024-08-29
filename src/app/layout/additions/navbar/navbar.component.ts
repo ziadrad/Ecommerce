@@ -4,7 +4,6 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CartService } from '../../../shared/services/cart/cart.service';
-import { ToastrModule } from 'ngx-toastr';
 
 
 @Component({

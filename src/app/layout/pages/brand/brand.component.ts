@@ -2,7 +2,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Category } from '../../../shared/interfaces/data';
-import { CategoriesService } from '../../../shared/services/categories/categories.service';
 import { BrandsService } from '../../../shared/services/brands/brands.service';
 import { RouterLink } from '@angular/router';
 

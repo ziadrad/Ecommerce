@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { afterNextRender, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {  Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ProducsComponent } from "../products/products.component";
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategorySliderComponent } from "../../additions/category-slider/category-slider.component";

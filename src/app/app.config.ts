@@ -3,10 +3,9 @@ import { provideRouter, RouterModule, withViewTransitions } from '@angular/route
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { BrowserAnimationsModule, provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
+import {  provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
-import { IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 import { errorsInterceptor } from './shared/Interceptors/errors.interceptor';
 import { headersetInterceptor } from './shared/Interceptors/headerset.interceptor';
 
