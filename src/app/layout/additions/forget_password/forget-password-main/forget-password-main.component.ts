@@ -8,8 +8,7 @@ import {  NgxToastNotifyService } from 'ngx-toast-notify';
 
 @Component({
   selector: 'app-forget-password-main',
-  standalone: true,
-  imports: [NgClass, ReactiveFormsModule, CodeCheckComponent],
+
   templateUrl: './forget-password-main.component.html',
   styleUrl: './forget-password-main.component.scss', 
   animations: [

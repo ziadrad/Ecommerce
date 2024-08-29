@@ -14,7 +14,8 @@ import { AllordersComponent } from './layout/additions/allorders/allorders.compo
 export const routes: Routes = [
     
     {path:"", redirectTo:"home", pathMatch:"full"},
-    {path:"product_details",canActivate:[authGuard],loadComponent: ()=> import('../app/layout/additions/product-details/product-details.component').then(c=>c.ProductDetailsComponent)},
+    {path:'ForgetPassword',loadChildren:()=>import('../app/layout/forgetpassword/forgetpassword.module').then((m)=>m.ForgetpasswordModule),}
+    ,{path:"product_details",canActivate:[authGuard],loadComponent: ()=> import('../app/layout/additions/product-details/product-details.component').then(c=>c.ProductDetailsComponent)},
     {path:"home", component:HomeComponent,canActivate:[authGuard]},
     {path:"products", component:ProducsComponent,canActivate:[authGuard],},
     {path:"cart", component:CartComponent,canActivate:[authGuard]},
@@ -26,7 +27,6 @@ export const routes: Routes = [
     {path:"categories", component:CategoriesComponent,canActivate:[authGuard]},
     {path:"brand", component:BrandComponent,canActivate:[authGuard]},
     {path:"login", component:LoginComponent},
-    {path:"ForgetPassword",loadComponent: ()=> import('../app/layout/additions/forget_password/forget-password-main/forget-password-main.component').then(c=>c.ForgetPasswordMainComponent)},
     {path:"register", component:RegisterComponent},
     {path:"**", component:NotfoundComponent},
   

@@ -1,14 +1,10 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../../shared/services/auth/auth.service';
-import { NgClass } from '@angular/common';
-import { NewpasswordComponent } from "../newpassword/newpassword.component";
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-code-check',
-  standalone: true,
-  imports: [NgClass, ReactiveFormsModule, NewpasswordComponent],
   templateUrl: './code-check.component.html',
   styleUrl: './code-check.component.scss',
   animations: [

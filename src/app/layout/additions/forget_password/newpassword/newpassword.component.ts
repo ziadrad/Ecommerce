@@ -7,8 +7,6 @@ import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-newpassword',
-  standalone: true,
-  imports: [ReactiveFormsModule,NgClass],
   templateUrl: './newpassword.component.html',
   styleUrl: './newpassword.component.scss',
   animations: [

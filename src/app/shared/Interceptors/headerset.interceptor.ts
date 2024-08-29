@@ -10,7 +10,7 @@ let  UserToken:string =''
     }
     
    
-  req.headers.set("token",UserToken)
+ req =  req.clone({setHeaders:{token:UserToken}})
   
   return next(req);
 };
