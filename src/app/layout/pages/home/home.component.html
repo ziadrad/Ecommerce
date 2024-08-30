@@ -13,8 +13,9 @@
       </div>
         </div>
 </div>
-
-<app-category-slider></app-category-slider>
+<div class="mt-3 md:mt-0">
+<app-category-slider ></app-category-slider>
+</div>
 <div class="py-8">
-  <app-product-row ></app-product-row>
+  <app-product-row [isloading]="_ProductsService.isloading" ></app-product-row>
 </div>

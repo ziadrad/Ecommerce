@@ -7,7 +7,12 @@
   <h2 class="capitalize">  not found</h2>
   
   </div>
+
   } @else { 
+    
+    @if (_ProductsService.product_List.length == 0 && !isloading) {
+      <div> <h2 class="capitalize text-lg md:text-3xl text-gray-700 text-center my-4" > there is no product in this category for Now</h2></div>
+       }@else {
 <div @openclose
 class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center justify-center gap-y-7 gap-x-7 mt-10 mb-5"
 >
@@ -100,6 +105,7 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
 }
 } @else {
 <!-- Products cards -->
+
 @for (product of _ProductsService.product_List|search :userWord; track $index ;) {
 
 <div
@@ -167,4 +173,4 @@ class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center
 
 } } 
 </div>
-  }
+        } }

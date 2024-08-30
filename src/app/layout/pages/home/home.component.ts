@@ -5,6 +5,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CategorySliderComponent } from "../../additions/category-slider/category-slider.component";
 import { ProductRowComponent } from "../../additions/product-row/product-row.component";
 import { AllordersComponent } from "../../additions/allorders/allorders.component";
+import { ProductsService } from '../../../shared/services/products/products.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ import { AllordersComponent } from "../../additions/allorders/allorders.componen
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private page_id:object)
+  constructor(@Inject(PLATFORM_ID) private page_id:object,public _ProductsService:ProductsService)
   {    
   }
   ngOnInit(): void {

@@ -8,7 +8,7 @@ import { Category, Metadata, Product, product_List } from '../../interfaces/prod
   providedIn: 'root'
 })
 export class ProductsService {
-
+isloading:boolean =false;
   product_List!: Product[];
   metadata: Metadata = {
     currentPage: 1,
@@ -20,6 +20,10 @@ export class ProductsService {
   constructor(private _httpClient: HttpClient) { 
 
    
+  }
+
+  getProductsbyCategory(id: string):Observable<product_List>{
+    return this._httpClient.get<product_List>(Environment.baseUrl+'/api/v1/products?category[in]=' + id);
   }
 
   getProducts(page: number):Observable<product_List>{

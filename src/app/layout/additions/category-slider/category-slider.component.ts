@@ -27,6 +27,19 @@ this.category_list  =res.data
       }
     });
   }
+
+  getproductesbycat(catid:string){
+    console.log('clicked')
+    this._ProductsService.isloading =true;
+this._ProductsService.getProductsbyCategory(catid).subscribe({
+next:(res)=>{
+this._ProductsService.product_List=res.data
+this._ProductsService.isloading = false
+
+}
+
+})
+  }
   constructor(public _ProductsService:ProductsService){}
   customOptions: OwlOptions = {
  
